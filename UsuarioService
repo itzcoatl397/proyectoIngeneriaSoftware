@@ -1,0 +1,35 @@
+package com.ejemplo.demo.service;
+
+import com.ejemplo.demo.model.Usuario;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UsuarioService {
+
+    private List<Usuario> usuarios = new ArrayList<>();
+
+    // Obtener todos los usuarios
+    public List<Usuario> obtenerTodos() {
+        return usuarios;
+    }
+
+    // Obtener usuario por ID
+    public Optional<Usuario> obtenerPorId(Long id) {
+        return usuarios.stream().filter(u -> u.getId().equals(id)).findFirst();
+    }
+
+    // Crear nuevo usuario
+    public Usuario crearUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+        return usuario;
+    }
+
+    // Eliminar usuario por ID
+    public boolean eliminarUsuario(Long id) {
+        return usuarios.removeIf(u -> u.getId().equals(id));
+    }
+}
